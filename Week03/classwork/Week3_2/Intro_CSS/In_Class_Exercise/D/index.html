@@ -2,12 +2,84 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Intro to CSS Text and Spans</title>
-    <style type="text/CSS"></style>
+    <style type="text/CSS">
+      /* universal selector - always the first CSS rule because the intent is to reset
+      and then overwrite with more specific styles/selectors futher down */
+      * {
+        /* border: 1px solid blue; */
+        margin: 0;
+        padding: 0;
+      }
+      /* tag selector applies to all p tags on the page */
+      p {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #f50;
+        /* above is shorthand for #ff5500 */
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      a {
+        color: cornflowerblue;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .silly_text {
+        font-family: fantasy;
+        font-size: 1.5rem;
+      }
+
+      #important_stuff {
+        font-size: xx-large;
+        font-weight: bold;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: chartreuse;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <p id="important_stuff">This is important. It gets an ID.</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean venenatis
+      in nulla ut imperdiet.
+      <a href="#" class="silly_text">Vivamus cursus mattis consectetur.</a>Sed
+      in vulputate mi. Nulla neque tortor, aliquam hendrerit purus vitae,
+      eleifend varius ipsum. Quisque sed suscipit odio, sed aliquam nunc. Nam ut
+      feugiat magna. In a fringilla mi, eu blandit velit. Curabitur sed auctor
+      tellus. Proin eget diam sed nulla aliquam molestie at ac eros. Nunc a
+      tincidunt arcu, sit amet vulputate ante. Duis porttitor risus at tempor
+      dignissim. Aenean interdum tincidunt nunc ut pellentesque. Praesent purus
+      justo, fringilla eget tempor at, tempor vel mauris. Nulla iaculis augue
+      magna, quis sollicitudin elit euismod at. Mauris sed egestas ex, sit amet
+      rhoncus lectus. Orci varius natoque penatibus et magnis dis parturient
+      montes, nascetur ridiculus mus.
+    </p>
+    <p>
+      Curabitur lacus turpis, ullamcorper ac lobortis vel, ullamcorper eget
+      libero. Aliquam eget posuere tortor. Vivamus in turpis et leo efficitur
+      lobortis. Nunc purus augue, scelerisque at mauris id, vulputate pharetra
+      leo. Sed finibus lorem posuere, euismod neque ut, scelerisque lectus.
+      Vivamus mattis libero dui, non hendrerit orci sollicitudin quis.
+      <span class="silly_text">
+        quis gravida nunc. Aenean orci nisi, interdum rutrum varius a, tristique
+        vel dolor. Pellentesque felis arcu, luctus at mi consectetur,
+        condimentum rutrum lacus. Nunc ornare eros at lacus posuere,
+        sollicitudin feugiat enim aliquam.</span
+      >
+      Mauris metus velit, suscipit vitae ultricies in, aliquet nec velit.
+      Suspendisse at gravida justo.
+    </p>
+    <p>
+      Ut posuere dui ut nibh tristique, id hendrerit massa aliquam. Nulla et sem
+      eu purus vehicula congue. Nam maximus nibh eget mi sodales congue. Nam
+      pharetra ipsum eu venenatis consectetur. Donec euismod leo aliquam,
+      sagittis odio non, elementum nulla. Vivamus faucibus libero egestas augue
+      vestibulum, at luctus libero bibendum. Nulla metus nulla, mollis quis
+      lorem vel, vehicula finibus urna. Proin luctus arcu eget mi placerat, eget
+      ullamcorper lorem porttitor.
+    </p>
+  </body>
 </html>
