@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swiss Vista</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("mobile-menu").addEventListener("click", toggleShow);
+        document.getElementById("menu").addEventListener("click", toggleShow);
+      });
+
+      function toggleShow() {
+        document.getElementById("menu").classList.toggle("show");
+      }
+    </script>
   </head>
   <body>
-    <header>
+    <header id="home">
       <!-- nav bar and logo at top of page -->
       <nav>
         <div class="logo-container">
@@ -15,11 +25,15 @@
           <img src="img/swiss-flag.png" alt="Flag for logo" />
           <p>Vista</p>
         </div>
-        <ul class="nav-list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Activities</a></li>
-          <li><a href="#">Locations</a></li>
-          <li><a href="#">Contact</a></li>
+
+        <!-- hamburger menu (mobile only) -->
+        <span class="mobile-menu" id="mobile-menu">&#8801;</span>
+        
+        <ul class="menu" id="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#locations">Locations</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -31,88 +45,168 @@
       <!-- overlayed text -->
       <div class="content">
         <h1>SWITZERLAND</h1>
-        <a href="#">Explore Now</a>
+        <a href="#activities">Explore Now</a>
       </div>
     </header>
 
     <!-- activities section -->
+    <h2 class="activities-title" id="activities">Activities</h2>
+    <p class="activities-brief">
+      Explore Switzerland's scenery at its heart.
+    </p>
     <div class="activities">
-      <div class="activity-card">
+      <div class="info-card">
         <div class="img-container">
-          <img src="img/skiing.png" alt="skiing in the alps" />
+          <img src="img/skiing.png" alt="Skiing" />
         </div>
-        <h2>Skiing the Swiss Alps</h2>
+        <h3>Skiing the Swiss Alps</h3>
         <p>
           From the slopes of St. Moritz to the peaks of the Matterhorn, the
           Swiss Alps offer world-class terrain for every skill level. Vast
-          landscapes of freshly fallen snow and a vast network of interconnected
-          resorts ensure an unforgettable alpine experience.
+          landscapes of freshly fallen snow and a vast network of resorts ensure
+          an unforgettable alpine experience.
         </p>
-        <a href="#">Book Now</a>
+        <a
+          href="https://www.myswitzerland.com/en-us/experiences/winter/ski-and-snowboard/"
+          target="_blank"
+          >Learn More</a
+        >
       </div>
 
-      <div class="activity-card">
+      <div class="info-card">
         <div class="img-container">
-          <img src="img/hiking.png" alt="hiking through gorgeous mountains" />
+          <img src="img/hiking.png" alt="Hiking" />
         </div>
-        <h2>Hiking</h2>
-        <p>lorem ipsum</p>
-        <a href="#">Book Now</a>
+        <h3>Hiking</h3>
+        <p>
+          Traverse the iconic Eiger North Face and the gentle meadows of
+          Lauterbrunnen to discover the diverse beauty of the Swiss countryside.
+          Walk through lush alpine meadows and around crystal-clear lakes, all
+          while surrounded by the vast majesty of the Swiss Alps.
+        </p>
+        <a href="https://schweizmobil.ch/en/hiking-in-switzerland" target="_blank"
+          >Learn More</a
+        >
       </div>
 
-      <div class="activity-card">
+      <div class="info-card">
         <div class="img-container">
-          <img
-            src="img/paragliding.png"
-            alt="two people paragliding over swiss lake and mountains"
-          />
+          <img src="img/paragliding.png" alt="Paragliding" />
         </div>
-        <h2>Paragliding</h2>
-        <p>lorem ipsum</p>
-        <a href="#">Book Now</a>
+        <h3>Paragliding</h3>
+        <p>
+          Atop Swiss peaks, soar above the world and witness a truly miraculous
+          view of the Swiss landscape. First time? No problem! Accompany
+          yourself with an expert pilot to ensure a safe yet scenic descent.
+          Bonus points for doing a mid-air flip on the way down!
+        </p>
+        <a href="https://swiss-paragliding.ch/en/" target="_blank">Learn More</a>
       </div>
 
-      <div class="activity-card">
+      <div class="info-card">
         <div class="img-container">
-          <img
-            src="img/scenic-rail.png"
-            alt="scenic rail through swiss mountains"
-          />
+          <img src="img/scenic-rail.png" alt="Scenic Rail Journeys" />
         </div>
-        <h2>Scenic Rails</h2>
-        <p>lorem ipsum</p>
-        <a href="#">Book Now</a>
+        <h3>Scenic Rail Journeys</h3>
+        <p>
+          Get a close up of Switzerland's gorgeous landscapes whilst enjoying
+          the comfort of a train. With routes that travel through snow-capped
+          peaks and emerald valleys, scenic rail journeys offer a one-of-a-kind
+          way to expaerience the beauty of Switzerland.
+        </p>
+        <a href="https://glacierexpress.ch/en" target="_blank">Learn More</a>
       </div>
     </div>
 
     <!-- locations section -->
+    <h2 class="locations-title" id="locations">Locations</h2>
+    <p class="locations-brief">
+      Great places to begin your adventure.
+    </p>
     <div class="locations">
-      <div class="locations-card">
+      <div class="info-card">
         <div class="img-container">
-          <img src="img/grindelwald.png" alt="grindelwald apline village" />
+          <img src="img/grindelwald.png" alt="Grindelwald" />
         </div>
-        <h2>Grindelwald</h2>
-        <p>lorem ipsum</p>
+        <h3>Grindelwald</h3>
+        <p>
+          At the foot of the Eiger North face, Grindelwald is a popular mountain
+          village. It's location lends itself to some of the most desireable
+          alpine excursions into the Jungfrau region. At the top lies
+          Jungfraujoch, the Top of Europe.
+        </p>
+        <a href="https://grindelwald.swiss/en/" target="_blank">Learn More</a>
       </div>
 
-      <div class="locations-card">
+      <div class="info-card">
         <div class="img-container">
-          <img src="img/lucerne.png" alt="lucerne" />
+          <img src="img/lucerne.png" alt="Lucerne" />
         </div>
-        <h2>Lucerne</h2>
-        <p>lorem ipsum</p>
+        <h3>Lucerne</h3>
+        <p>
+          At the center of Switzerland, Lucerne uniquely rests between lake and
+          mountains. The city is known for its preserved medieval architecture,
+          such as its iconic Chapel Bridge that was constructed in the 14th
+          century.
+        </p>
+        <a href="https://www.luzern.com/en/" target="_blank">Learn More</a>
       </div>
 
-      <div class="locations-card">
+      <div class="info-card">
         <div class="img-container">
-          <img src="img/interlaken.png" alt="interlaken and lake thun" />
+          <img src="img/interlaken.png" alt="Interlaken" />
         </div>
-        <h2>Interlaken</h2>
-        <p>lorem ipsum</p>
+        <h3>Interlaken</h3>
+        <p>
+          Resting between Lake Thun and Lake Brienz, Interlaken is a hub known
+          for its proximity to many outdoor activities. The Jungfrau region and
+          the Bernese Oberland are both just a short train ride away, making the
+          town a great base for exploring Switerland's outdoor scenery.
+        </p>
+        <a href="https://www.myswitzerland.com/en-us/destinations/interlaken/"
+          target="_blank"
+          >Learn More</a
+        >
+      </div>
+
+      <div class="info-card">
+        <div class="img-container">
+          <img src="img/zermatt.png" alt="Zermatt" />
+        </div>
+        <h3>Zermatt</h3>
+        <p>
+          Home to the iconic Matterhorn, Zermatt is a high-altitude glacial
+          village that is located at the heart of the Valais Alps. The village
+          offers activites during year-round, and is one of few locations
+          worldwide to offeryear-round skiing.
+        </p>
+        <a href="https://zermatt.swiss/en" target="_blank">Learn More</a>
       </div>
     </div>
 
     <!-- contact section -->
-    <div class="contact"></div>
+    <h2 class="contact-title" id="contact">Contact</h2>
+    <p class="contact-brief">
+      Have questions or want to learn more? Get in touch with us!
+    </p>
+    <div class="contact">
+      <!-- phone -->
+      <div class="phone-container">
+        <img src="img/phone.svg" alt="Phone" />
+        <p>+1 6613958966</p>
+      </div>
+
+      <!-- email -->
+      <div class="email-container">
+        <img src="img/mail.svg" alt="Mail" />
+        <p><a href="mailto:jj4216@nyu.edu">jj4216@nyu.edu</a></p>
+      </div>
+
+      <!-- location -->
+      <div class="location-container">
+        <img src="img/location.svg" alt="Location" />
+        <p>New York, USA</p>
+      </div>
+    </div>
   </body>
 </html>
