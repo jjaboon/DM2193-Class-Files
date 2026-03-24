@@ -255,7 +255,6 @@ nav {
 @media (max-width: 1024px) {
     .info-card {
         flex: 0 0 47%;
-        margin: 0 auto;
     }
 }
 
@@ -267,7 +266,6 @@ nav {
 
     .info-card {
         flex: 0 0 80%;
-        margin: 0 auto;
     }
 
     .mobile-menu {
