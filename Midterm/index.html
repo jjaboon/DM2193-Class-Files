@@ -1,26 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Swiss Travel Guide</title>
+    <title>Swiss Vista</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header class="hero">
-        <div class="video-bg">
-            <video autoplay muted loop>
-                <source src="videos/bg-video.mp4" type="video/mp4">
-            </video>
-            <!-- <iframe 
-                src="https://www.youtube.com/embed/Vbp0gSyAx_c"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                frameborder="0" 
-                allowfullscreen>
-            </iframe> -->
+    <header>
+      <!-- nav bar and logo at top of page -->
+      <nav>
+        <div class="logo-container">
+          <p>Swiss</p>
+          <img src="img/swiss-flag.png" alt="Flag for logo" />
+          <p>Vista</p>
         </div>
+        <ul class="nav-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Activities</a></li>
+          <li><a href="#">Locations</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- fullscreen video bg of scenery -->
+      <video autoplay muted loop id="bg-video">
+        <source src="videos/bg-video.mp4" type="video/mp4" />
+      </video>
+
+      <!-- overlayed text -->
+      <div class="content">
+        <h1>SWITZERLAND</h1>
+        <a href="#">Explore Now</a>
+      </div>
     </header>
-    
+
+    <!-- activities section -->
+    <div class="activities">
+      <div class="activity-card">
+        <div class="img-container">
+          <img src="img/skiing.png" alt="skiing in the alps" />
+        </div>
+        <h2>Skiing the Swiss Alps</h2>
+        <p>
+          From the slopes of St. Moritz to the peaks of the Matterhorn, the
+          Swiss Alps offer world-class terrain for every skill level. Vast
+          landscapes of freshly fallen snow and a vast network of interconnected
+          resorts ensure an unforgettable alpine experience.
+        </p>
+        <a href="#">Book Now</a>
+      </div>
+
+      <div class="activity-card">
+        <div class="img-container">
+          <img src="img/hiking.png" alt="hiking through gorgeous mountains" />
+        </div>
+        <h2>Hiking</h2>
+        <p>lorem ipsum</p>
+        <a href="#">Book Now</a>
+      </div>
+
+      <div class="activity-card">
+        <div class="img-container">
+          <img
+            src="img/paragliding.png"
+            alt="two people paragliding over swiss lake and mountains"
+          />
+        </div>
+        <h2>Paragliding</h2>
+        <p>lorem ipsum</p>
+        <a href="#">Book Now</a>
+      </div>
+
+      <div class="activity-card">
+        <div class="img-container">
+          <img
+            src="img/scenic-rail.png"
+            alt="scenic rail through swiss mountains"
+          />
+        </div>
+        <h2>Scenic Rails</h2>
+        <p>lorem ipsum</p>
+        <a href="#">Book Now</a>
+      </div>
+    </div>
+
+    <!-- locations section -->
+    <div class="locations">
+      <div class="locations-card">
+        <div class="img-container">
+          <img src="img/grindelwald.png" alt="grindelwald apline village" />
+        </div>
+        <h2>Grindelwald</h2>
+        <p>lorem ipsum</p>
+      </div>
+
+      <div class="locations-card">
+        <div class="img-container">
+          <img src="img/lucerne.png" alt="lucerne" />
+        </div>
+        <h2>Lucerne</h2>
+        <p>lorem ipsum</p>
+      </div>
+
+      <div class="locations-card">
+        <div class="img-container">
+          <img src="img/interlaken.png" alt="interlaken and lake thun" />
+        </div>
+        <h2>Interlaken</h2>
+        <p>lorem ipsum</p>
+      </div>
+    </div>
+
+    <!-- contact section -->
+    <div class="contact"></div>
   </body>
 </html>
