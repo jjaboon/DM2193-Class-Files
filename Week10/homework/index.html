@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Objects</title>
+    <script>
+      //Step 1
+      const book = {
+        title: "The Great Gatsby",
+        author: "F. Scott Fitzgerald",
+        pages: 180,
+        isAvailable: true
+      }
+
+      //Step 2
+      console.log(book.title)
+
+      //Step 3
+      console.log(book["author"])
+
+      //step 4
+      book.genre = "Tragedy";
+
+      //step 5
+      book.describe = function () {
+        console.log(this.title + " by " + this.author + " - " + this.pages + " pages")
+      }
+
+      //step 6
+      book.describe()
+
+      //step 7
+      console.log(Object.keys(book))
+    </script>
+  </head>
+  <body></body>
+</html>
