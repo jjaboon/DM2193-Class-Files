@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tip Calculator</title>
+    <style type="text/css">
+      .container {
+        width: 300px;
+        margin: 0 auto;
+        /* trick from before flexbox align items center */
+        line-height: 40px;
+        margin-top: 5%;
+        border: 1px solid gray;
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .well {
+        border-radius: 10px;
+        background-color: #ddd;
+        min-height: 100px;
+        padding: 20px;
+      }
+
+      .container button {
+        width: 100%;
+        padding: 10px 0;
+        border: 2px solid gray;
+        cursor: pointer;
+        margin: 10px 0;
+        color: white;
+        background-color: #333;
+        transition: background-color 1s ease;
+      }
+
+      .container button:hover {
+        background-color: #777;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 0;
+        border: 1px solid gray;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Tip Calculator</h1>
+      <form>
+        <label>What is the total bill</label>
+        <input
+          type="number"
+          name="bill"
+          id="bill"
+          min="0"
+          step="0.01"
+          required
+        />
+
+        <br />
+        <!-- Radio Button Group: They all share the same name, but different values, peep the label wrapping convention -->
+        <label><input type="radio" name="tip" value="0.05" />5%</label>
+        <label><input type="radio" name="tip" value="0.10" />10%</label>
+        <label
+          ><input
+            type="radio"
+            name="tip"
+            value="0.15"
+            checked="true"
+          />15%</label
+        >
+        <label><input type="radio" name="tip" value="0.20" />20%</label>
+        <button type="submit" id="calcBtn">Calculate Tip</button>
+      </form>
+
+      <div class="well" id="result"></div>
+    </div>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("calcBtn").addEventListener('click', calcTip)
+      })
+
+      const calcTip = (event) => {
+        event.preventDefault()
+
+        // grab the output div
+        let result = document.getElementById('result')
+
+        //grab value from bill input
+        let bill = parseFloat(document.getElementById('bill').value)
+
+        //declare a few vars for the calculations
+        let percent
+        let tip
+        let total
+
+        //find the selected tip percentage in our input node list
+        let arrTip = document.getElementsByName('tip')
+        for(let i = 0; i < arrTip.length; i++) {
+          if (arrTip[i].checked) {
+            percent = arrTip[i].value
+            break
+          }
+        }
+
+        tip = moneyRound(bill * percent)
+        total = moneyRound(bill + tip)
+        
+        // print it out to the user
+        let p1 = document.createElement('p')
+        let p2 = document.createElement('p')
+        let p3 = document.createElement('p')
+        let p4 = document.createElement('p')
+
+        let t1 = document.createTextNode(`Bill: $${bill}`)
+        let t2 = document.createTextNode(`Tip Percentage: $${percent}`)
+        let t3 = document.createTextNode(`Calculated Tip: $${tip}`)
+        let t4 = document.createTextNode(`Total: $${total}`)
+
+        p1.appendChild(t1)
+        p2.appendChild(t2)
+        p3.appendChild(t3)
+        p4.appendChild(t4)
+
+        result.appendChild(p1)
+        result.appendChild(p2)
+        result.appendChild(p3)
+        result.appendChild(p4)
+      }
+
+      const moneyRound = (num) => {
+        return Math.ceil(num*100)/100
+      }
+    </script>
+  </body>
+</html>
