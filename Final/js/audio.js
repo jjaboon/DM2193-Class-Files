@@ -18,12 +18,12 @@ export class AudioEngine {
         this.birdsGain = this.ctx.createGain()
         this.rainGain = this.ctx.createGain()
 
-        const assetGains = [this.thunderGain, this.birdsGain, this.rainGain];
+        const assetGains = [this.thunderGain, this.birdsGain, this.rainGain]
 
        assetGains.forEach(g => {
-            g.gain.value = 0;
+            g.gain.value = 0
             g.connect(this.ctx.destination)
-        });
+        })
         
         this.rainBuffer = null
         this.thunderBuffer = null
