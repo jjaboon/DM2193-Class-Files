@@ -14,13 +14,16 @@ const headphones = document.querySelector('#headphones')
 const startBtn = document.querySelector('#start-btn')
 const infoGrid = document.querySelector('#info-grid')
 const loader = document.querySelector('#loader')
-const weatherToggle = document.querySelector('#weatherToggle');
-const weatherLabel = document.querySelector('#weatherLabel');
+const weatherToggle = document.querySelector('#weatherToggle')
+const weatherLabel = document.querySelector('#weatherLabel')
 
 // Slider elements
 const rainSlider = document.querySelector('#rainVolume')
 const thunderSlider = document.querySelector('#thunderVolume')
 const birdsSlider = document.querySelector('#birdsVolume')
+const windSlider = document.querySelector('#windVolume')
+const cricketsSlider = document.querySelector('#cricketsVolume')
+const waterfallSlider = document.querySelector('#waterfallVolume')
 
 // rain animation interval for rain bg
 let rainInterval = null
@@ -42,8 +45,8 @@ startBtn.addEventListener('click', async () => {
 
     // clear any existing rain animation
     if (rainInterval) {
-        clearInterval(rainInterval);
-        rainInterval = null;
+        clearInterval(rainInterval)
+        rainInterval = null
     }
     // fetch the current weather condition
     const weatherData = await weather.fetchCurrentWeather()
@@ -67,8 +70,8 @@ startBtn.addEventListener('click', async () => {
 
         // stop rain animation if it was running
         if (rainInterval) {
-            clearInterval(rainInterval);
-            rainInterval = null;
+            clearInterval(rainInterval)
+            rainInterval = null
         }
     }
 
@@ -102,32 +105,44 @@ birdsSlider.addEventListener('input', (e) => {
     audio.setBirdsVolume(e.target.value)
 })
 
+windSlider.addEventListener('input', (e) => {
+    audio.setWindVolume(e.target.value)
+})
+
+cricketsSlider.addEventListener('input', (e) => {
+    audio.setCricketsVolume(e.target.value)
+})
+
+waterfallSlider.addEventListener('input', (e) => {
+    audio.setWaterfallVolume(e.target.value)
+})
+
 // rain animation logic
 const createRaindrop = () => {
-    const raindrop = document.createElement('div');
-    raindrop.classList.add('raindrop');
+    const raindrop = document.createElement('div')
+    raindrop.classList.add('raindrop')
 
-    raindrop.style.left = Math.random() * window.innerWidth + 'px';
+    raindrop.style.left = Math.random() * window.innerWidth + 'px'
 
     const duration = Math.random() * 1 + 0.5;
-    raindrop.style.animationDuration = duration + 's';
+    raindrop.style.animationDuration = duration + 's'
 
-    document.body.appendChild(raindrop);
+    document.body.appendChild(raindrop)
 
     setTimeout(() => {
-        raindrop.remove();
-    }, duration * 1000);
+        raindrop.remove()
+    }, duration * 1000)
 }
 
 // manual weather toggle for user control
 weatherToggle.addEventListener('change', (e) => {
     // Determine state based on toggle
-    const isRainy = e.target.checked;
-    const manualData = { condition: isRainy ? 'Rain' : 'Clear' };
-    weatherLabel.textContent = isRainy ? 'Mode: Rainy' : 'Mode: Clear';
+    const isRainy = e.target.checked
+    const manualData = { condition: isRainy ? 'Rain' : 'Clear' }
+    weatherLabel.textContent = isRainy ? 'Mode: Rainy' : 'Mode: Clear'
 
     // 1. Update Audio
-    audio.updateEnvironment(manualData);
+    audio.updateEnvironment(manualData)
 
     // 2. Update Background Colors
     if (manualData.condition === 'Rain') {
@@ -136,7 +151,7 @@ weatherToggle.addEventListener('change', (e) => {
         document.body.style.setProperty('--grad-bottom', '#29323c')
 
         // start rain animation
-        rainInterval = setInterval(createRaindrop, 50);
+        rainInterval = setInterval(createRaindrop, 50)
     } else {
         // Smoothly shift gradient to clear sky colors
         document.body.style.setProperty('--grad-top', '#67f7ff')
@@ -144,8 +159,8 @@ weatherToggle.addEventListener('change', (e) => {
 
         // stop rain animation if it was running
         if (rainInterval) {
-            clearInterval(rainInterval);
-            rainInterval = null;
+            clearInterval(rainInterval)
+            rainInterval = null
         }
     }
 });

@@ -17,8 +17,10 @@ export class AudioEngine {
         this.thunderGain = this.ctx.createGain()
         this.birdsGain = this.ctx.createGain()
         this.rainGain = this.ctx.createGain()
+        this.cricketsGain = this.ctx.createGain()
+        this.waterfallGain = this.ctx.createGain()
 
-        const assetGains = [this.thunderGain, this.birdsGain, this.rainGain]
+        const assetGains = [this.thunderGain, this.birdsGain, this.rainGain, this.cricketsGain, this.waterfallGain]
 
        assetGains.forEach(g => {
             g.gain.value = 0
@@ -28,12 +30,17 @@ export class AudioEngine {
         this.rainBuffer = null
         this.thunderBuffer = null
         this.birdsBuffer = null
+        this.cricketsBuffer = null
+        this.waterfallBuffer = null
 
         this.sources = {
             rain: null,
             thunder: null,
-            birds: null
-        };
+            birds: null,
+            crickets: null,
+            waterfall: null
+        }
+
         this.loadAssets() // start loading audio assets immediately
 
         // setup master gain (overall volume control)
@@ -118,6 +125,8 @@ export class AudioEngine {
             this.rainBuffer = await load('assets/audio/raindrops.mp3')
             this.thunderBuffer = await load('assets/audio/thunder.mp3')
             this.birdsBuffer = await load('assets/audio/birds.mp3')
+            this.cricketsBuffer = await load('assets/audio/crickets.mp3')
+            this.waterfallBuffer = await load('assets/audio/waterfall.mp3')
         } catch (e) {
             console.error("Audio Load Error:", e) 
         }
@@ -131,13 +140,15 @@ export class AudioEngine {
         // If the rain source already exists, we assume everything is already looping.
         if (this.sources.rain) {
             console.log("Loops are already active.")
-            return; 
+            return
         }
 
         const audioConfig = [
             { name: 'rain', buffer: this.rainBuffer, gain: this.rainGain },
             { name: 'thunder', buffer: this.thunderBuffer, gain: this.thunderGain },
-            { name: 'birds', buffer: this.birdsBuffer, gain: this.birdsGain }
+            { name: 'birds', buffer: this.birdsBuffer, gain: this.birdsGain },
+            { name: 'crickets', buffer: this.cricketsBuffer, gain: this.cricketsGain },
+            { name: 'waterfall', buffer: this.waterfallBuffer, gain: this.waterfallGain }
         ];
 
         audioConfig.forEach(item => {
@@ -148,26 +159,32 @@ export class AudioEngine {
             src.start()
 
             // Store the reference so we know it's running
-            this.sources[item.name] = src;
+            this.sources[item.name] = src
         })
     }
 
     // smoothly adjust asset volume via volume slider
-    setRainVolume = (v) => {this.rainGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)}
+    setRainVolume = (v) => this.rainGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)
     setThunderVolume = (v) => this.thunderGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)
     setBirdsVolume = (v) => this.birdsGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)
+    setWindVolume = (v) => this.masterGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)
+    setCricketsVolume = (v) => this.cricketsGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)
+    setWaterfallVolume = (v) => this.waterfallGain.gain.linearRampToValueAtTime(v, this.ctx.currentTime + 0.05)
 
     // change the sound based on weather
     updateEnvironment = (weather) => {
         const now = this.ctx.currentTime;
-        const duration = 4; // seconds for transition
+        const duration = 4 // seconds for transition
         if (weather.condition === 'Rain') {
             this.rainGain.gain.linearRampToValueAtTime(0.15, now + 0.05)
             this.thunderGain.gain.linearRampToValueAtTime(0.07, now + 0.05)
             this.birdsGain.gain.linearRampToValueAtTime(0, now + 0.05)
-            
+            this.masterGain.gain.linearRampToValueAtTime(0.5, now + 0.05)
+            this.cricketsGain.gain.linearRampToValueAtTime(0, now + 0.05)
+            this.waterfallGain.gain.linearRampToValueAtTime(0, now + 0.05)
+
             // Sync UI Sliders
-            this.updateSliders(0.15, 0.07, 0);
+            this.updateSliders(0.15, 0.07, 0, 0.5, 0, 0)
 
             // muffle lower thrumming
             this.lowFilterGain.gain.linearRampToValueAtTime(0.010, now + duration)
@@ -185,9 +202,12 @@ export class AudioEngine {
             this.rainGain.gain.linearRampToValueAtTime(0, now + 0.05)
             this.thunderGain.gain.linearRampToValueAtTime(0, now + 0.05)
             this.birdsGain.gain.linearRampToValueAtTime(0.3, now + 0.05)
-
+            this.masterGain.gain.linearRampToValueAtTime(0.5, now + 0.05)
+            this.cricketsGain.gain.linearRampToValueAtTime(0, now + 0.05)
+            this.waterfallGain.gain.linearRampToValueAtTime(0, now + 0.05)
+            
             // Sync UI Sliders
-            this.updateSliders(0, 0, 0.3);
+            this.updateSliders(0, 0, 0.3, 0.5, 0, 0)
 
             // bring back clear wind
             this.lowFilterGain.gain.linearRampToValueAtTime(0.01, now + duration)
@@ -202,13 +222,20 @@ export class AudioEngine {
         }
     }
 
-    updateSliders = (r, t, b) => {
-        const rS = document.querySelector('#rainVolume');
-        const tS = document.querySelector('#thunderVolume');
-        const bS = document.querySelector('#birdsVolume');
+    updateSliders = (rain, thunder, birds, wind, crickets, waterfall) => {
+        const rainSlider = document.querySelector('#rainVolume')
+        const thunderSlider = document.querySelector('#thunderVolume')
+        const birdsSlider = document.querySelector('#birdsVolume')
+        const windSlider = document.querySelector('#windVolume')
+        const cricketsSlider = document.querySelector('#cricketsVolume')
+        const waterfallSlider = document.querySelector('#waterfallVolume')
+
         // prevent slider update if (somehow) element is missing
-        if (rS) rS.value = r;
-        if (tS) tS.value = t;
-        if (bS) bS.value = b;
+        if (rainSlider) rainSlider.value = rain
+        if (thunderSlider) thunderSlider.value = thunder
+        if (birdsSlider) birdsSlider.value = birds
+        if (windSlider) windSlider.value = wind
+        if (cricketsSlider) cricketsSlider.value = crickets
+        if (waterfallSlider) waterfallSlider.value = waterfall
     }
 }
