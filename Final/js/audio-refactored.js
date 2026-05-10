@@ -26,10 +26,10 @@ export class AudioEngine {
         this.masterGain.gain.value = 0
 
         // separate gain nodes for low and high filtered noise
-        this.lowFilterGain = this.ctx.createGain()
-        this.lowFilterGain.gain.value = 0.1
-        this.highFilterGain = this.ctx.createGain()
-        this.highFilterGain.gain.value = 0.1
+        this.lowFilterGain = this.ctx.createGain();
+        this.lowFilterGain.gain.value = 0.1; 
+        this.highFilterGain = this.ctx.createGain();
+        this.highFilterGain.gain.value = 0.1;
 
         // low filter for the thrumming base of the wind
         this.lowFilter = this.ctx.createBiquadFilter()

@@ -94,27 +94,27 @@ startBtn.addEventListener('click', async () => {
 
 // manual slider overrides
 rainSlider.addEventListener('input', (e) => {
-    audio.setRainVolume(e.target.value)
+    audio.setVolume('rain', e.target.value)
 })
 
 thunderSlider.addEventListener('input', (e) => {
-    audio.setThunderVolume(e.target.value)
+    audio.setVolume('thunder', e.target.value)
 })
 
 birdsSlider.addEventListener('input', (e) => {
-    audio.setBirdsVolume(e.target.value)
+    audio.setVolume('birds', e.target.value)
 })
 
 windSlider.addEventListener('input', (e) => {
-    audio.setWindVolume(e.target.value)
+    audio.setVolume('wind', e.target.value)
 })
 
 cricketsSlider.addEventListener('input', (e) => {
-    audio.setCricketsVolume(e.target.value)
+    audio.setVolume('crickets', e.target.value)
 })
 
 waterfallSlider.addEventListener('input', (e) => {
-    audio.setWaterfallVolume(e.target.value)
+    audio.setVolume('waterfall', e.target.value)
 })
 
 // rain animation logic
